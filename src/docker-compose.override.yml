@@ -5,8 +5,9 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=CatalogDb
+      - PGPORT=5434
     restart: always
     ports:
-      - "5432:5432"
+      - "5434:5434"
     volumes:
       - postgres_catalog:/var/lib/postgresql/data
