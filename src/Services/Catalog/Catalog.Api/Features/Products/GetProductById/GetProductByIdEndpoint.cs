@@ -1,5 +1,6 @@
 namespace Catalog.Api.Features.Products.GetProductById;
 
+//public record GetProductByIdRequest();
 public record GetProductByIdResponse(Product Product);
 
 public class GetProductByIdEndpoint : ICarterModule

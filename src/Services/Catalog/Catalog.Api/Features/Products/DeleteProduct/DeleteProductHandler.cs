@@ -3,6 +3,7 @@ using FluentValidation;
 namespace Catalog.Api.Features.Products.DeleteProduct;
 
 public record DeleteProductCommand(Guid Id) : ICommand<DeleteProductResult>;
+
 public record DeleteProductResult(bool IsSuccess);
 
 public class DeleteProductCommandValidator : AbstractValidator<DeleteProductCommand>
@@ -13,8 +14,7 @@ public class DeleteProductCommandValidator : AbstractValidator<DeleteProductComm
     }
 }
 
-internal class DeleteProductCommandHandler
-    (IDocumentSession session)
+internal class DeleteProductCommandHandler(IDocumentSession session)
     : ICommandHandler<DeleteProductCommand, DeleteProductResult>
 {
     public async Task<DeleteProductResult> Handle(DeleteProductCommand command, CancellationToken cancellationToken)
