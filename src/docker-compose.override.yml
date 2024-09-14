@@ -38,7 +38,7 @@ services:
       - ASPNETCORE_HTTPS_PORTS=8081
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
       - ASPNETCORE_Kestrel__Certificates__Default__Password=hellothere
-      - ConnectionStrings__MicroservicesDB=Server=catalogdb;Port=5432;Database=CatalogDb;User Id=postgres;Password=postgres;
+      - ConnectionStrings__MicroservicesDB=Server=catalogdb;Port=5433;Database=CatalogDb;User Id=postgres;Password=postgres;
     depends_on:
       - catalogdb
     ports:
@@ -48,7 +48,7 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
       - ./certs:/https/
-        
+
   basket.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -57,7 +57,7 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
       - ASPNETCORE_Kestrel__Certificates__Default__Password=hellothere
       - ConnectionStrings__MicroservicesDB=Server=basketdb;Port=5434;Database=BasketDb;User Id=postgres;Password=postgres;
-      - ConnectionStrings__Redis=Server=distributedcache:6379;
+      - ConnectionStrings__Redis=distributedcache:6379
     depends_on:
       - basketdb
       - distributedcache
