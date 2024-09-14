@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="CatalogDb@localhost" uuid="695a47a9-0b9d-4be1-9b31-c22ad4205c5e">
+    <data-source source="LOCAL" name="BasketDb@localhost" uuid="36af5339-aa16-40cb-9795-37ce6aac9a3e">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <configured-by-url>true</configured-by-url>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5434/CatalogDb?password=postgres&amp;user=postgres</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5434/BasketDb?password=postgres&amp;user=postgres</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="CatalogDb@localhost [2]" uuid="7198f408-2814-4ffe-8916-bc20a225e602">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5433/CatalogDb?password=postgres&amp;user=postgres</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
