@@ -1,8 +1,4 @@
-using Basket.Api.Data;
-using BuildingBlocks.Behaviors;
-using BuildingBlocks.Exceptions.Handler;
 using HealthChecks.UI.Client;
-using Marten;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);

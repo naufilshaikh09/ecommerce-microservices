@@ -1,9 +1,7 @@
-using Basket.Api.Data;
-using FluentValidation;
-
 namespace Basket.Api.Features.Basket.StoreBasket;
 
 public record StoreBasketCommand(ShoppingCart Cart) : ICommand<StoreBasketResult>;
+
 public record StoreBasketResult(string UserName);
 
 public class StoreBasketCommandValidator : AbstractValidator<StoreBasketCommand>
@@ -15,8 +13,9 @@ public class StoreBasketCommandValidator : AbstractValidator<StoreBasketCommand>
     }
 }
 
-public class StoreBasketCommandHandler
-    (IBasketRepository repository) //DiscountProtoService.DiscountProtoServiceClient discountProto
+public class
+    StoreBasketCommandHandler(
+        IBasketRepository repository) //DiscountProtoService.DiscountProtoServiceClient discountProto
     : ICommandHandler<StoreBasketCommand, StoreBasketResult>
 {
     public async Task<StoreBasketResult> Handle(StoreBasketCommand command, CancellationToken cancellationToken)

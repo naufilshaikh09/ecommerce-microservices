@@ -1,8 +1,7 @@
-using Basket.Api.Data;
-
 namespace Basket.Api.Features.Basket.GetBasket;
 
 public record GetBasketQuery(string UserName) : IQuery<GetBasketResult>;
+
 public record GetBasketResult(ShoppingCart Cart);
 
 public class GetBasketQueryHandler(IBasketRepository repository)

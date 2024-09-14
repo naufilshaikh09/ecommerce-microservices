@@ -14,7 +14,7 @@ public class DeleteBasketEndpoint : ICarterModule
                 return Results.Ok(response);
             })
             .WithName("DeleteProduct")
-            .Produces<DeleteBasketResponse>(StatusCodes.Status200OK)
+            .Produces<DeleteBasketResponse>()
             .ProducesProblem(StatusCodes.Status400BadRequest)
             .ProducesProblem(StatusCodes.Status404NotFound)
             .WithSummary("Delete Product")
