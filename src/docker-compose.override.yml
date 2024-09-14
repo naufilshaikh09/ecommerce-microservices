@@ -11,3 +11,18 @@ services:
       - "5434:5434"
     volumes:
       - postgres_catalog:/var/lib/postgresql/data
+        
+  catalog.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS-PORTS=8081
+      - ConnectionStrings__MicroservicesDB=Server=localhost;Port=5434;Database=CatalogDb;User Id=postgres;Password=postgres;
+    depends_on:
+      - catalogdb
+    ports:
+      - "6000:8080"
+      - "6060:8080"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
