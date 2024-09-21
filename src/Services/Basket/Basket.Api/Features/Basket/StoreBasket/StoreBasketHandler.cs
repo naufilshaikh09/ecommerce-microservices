@@ -17,7 +17,8 @@ public class StoreBasketCommandValidator : AbstractValidator<StoreBasketCommand>
 
 public class
     StoreBasketCommandHandler(
-        IBasketRepository repository, DiscountProtoService.DiscountProtoServiceClient discountProto)
+        IBasketRepository repository,
+        DiscountProtoService.DiscountProtoServiceClient discountProto)
     : ICommandHandler<StoreBasketCommand, StoreBasketResult>
 {
     public async Task<StoreBasketResult> Handle(StoreBasketCommand command, CancellationToken cancellationToken)
@@ -32,7 +33,8 @@ public class
         // Communicate with Discount.Grpc and calculate lastest prices of products into sc
         foreach (var item in cart.Items)
         {
-            var coupon = await discountProto.GetDiscountAsync(new GetDiscountRequest { ProductName = item.ProductName }, cancellationToken: cancellationToken);
+            var coupon = await discountProto.GetDiscountAsync(new GetDiscountRequest { ProductName = item.ProductName },
+                cancellationToken: cancellationToken);
             item.Price -= coupon.Amount;
         }
     }

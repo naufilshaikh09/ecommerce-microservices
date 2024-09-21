@@ -6,20 +6,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Discount.Grpc.Services;
 
-public class DiscountService
-    (DiscountContext dbContext, ILogger<DiscountService> logger)
+public class DiscountService(DiscountContext dbContext, ILogger<DiscountService> logger)
     : DiscountProtoService.DiscountProtoServiceBase
 {
     public override async Task<CouponModel> GetDiscount(GetDiscountRequest request, ServerCallContext context)
     {
         var coupon = await dbContext
-            .Coupons.
-            FirstOrDefaultAsync(x => x.ProductName == request.ProductName);
-        
-        if(coupon == null)
-            coupon = new Coupon {ProductName = "No Discount", Amount = 0, Description = "No Discount"};
+            .Coupons.FirstOrDefaultAsync(x => x.ProductName == request.ProductName);
 
-        logger.LogInformation("Discount is retrieved for ProductName : {productName}, Amount : {amount}", coupon.ProductName, coupon.Amount);
+        if (coupon == null)
+            coupon = new Coupon { ProductName = "No Discount", Amount = 0, Description = "No Discount" };
+
+        logger.LogInformation("Discount is retrieved for ProductName : {productName}, Amount : {amount}",
+            coupon.ProductName, coupon.Amount);
 
         var couponModel = coupon.Adapt<CouponModel>();
         return couponModel;
@@ -55,14 +54,16 @@ public class DiscountService
         return couponModel;
     }
 
-    public override async Task<DeleteDiscountResponse> DeleteDiscount(DeleteDiscountRequest request, ServerCallContext context)
+    public override async Task<DeleteDiscountResponse> DeleteDiscount(DeleteDiscountRequest request,
+        ServerCallContext context)
     {
         var coupon = await dbContext
             .Coupons
             .FirstOrDefaultAsync(x => x.ProductName == request.ProductName.ProductName);
 
         if (coupon is null)
-            throw new RpcException(new Status(StatusCode.NotFound, $"Discount with ProductName={request.ProductName} is not found."));
+            throw new RpcException(new Status(StatusCode.NotFound,
+                $"Discount with ProductName={request.ProductName} is not found."));
 
         dbContext.Coupons.Remove(coupon);
         await dbContext.SaveChangesAsync();

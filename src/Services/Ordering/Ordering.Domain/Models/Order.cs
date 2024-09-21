@@ -1,6 +1,3 @@
-using Ordering.Domain.Abstractions;
-using Ordering.Domain.ValueObjects;
-
 namespace Ordering.Domain.Models;
 
 public class Order : Aggregate<OrderId>
@@ -14,13 +11,15 @@ public class Order : Aggregate<OrderId>
     public Address BillingAddress { get; private set; } = default!;
     public Payment Payment { get; private set; } = default!;
     public OrderStatus Status { get; private set; } = OrderStatus.Pending;
+
     public decimal TotalPrice
     {
         get => OrderItems.Sum(x => x.Price * x.Quantity);
         private set { }
     }
 
-    public static Order Create(OrderId id, CustomerId customerId, OrderName orderName, Address shippingAddress, Address billingAddress, Payment payment)
+    public static Order Create(OrderId id, CustomerId customerId, OrderName orderName, Address shippingAddress,
+        Address billingAddress, Payment payment)
     {
         var order = new Order
         {
@@ -38,7 +37,8 @@ public class Order : Aggregate<OrderId>
         return order;
     }
 
-    public void Update(OrderName orderName, Address shippingAddress, Address billingAddress, Payment payment, OrderStatus status)
+    public void Update(OrderName orderName, Address shippingAddress, Address billingAddress, Payment payment,
+        OrderStatus status)
     {
         OrderName = orderName;
         ShippingAddress = shippingAddress;
@@ -61,9 +61,6 @@ public class Order : Aggregate<OrderId>
     public void Remove(ProductId productId)
     {
         var orderItem = _orderItems.FirstOrDefault(x => x.ProductId == productId);
-        if (orderItem is not null)
-        {
-            _orderItems.Remove(orderItem);
-        }
+        if (orderItem is not null) _orderItems.Remove(orderItem);
     }
 }
