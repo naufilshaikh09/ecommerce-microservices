@@ -11,8 +11,11 @@ public static class DependencyInjection
         var connectionString = configuration.GetConnectionString("MicroservicesDB");
 
         // Add services to container.
-        services.AddDbContext<ApplicationDbContext>(options => 
-            options.UseSqlServer(connectionString));
+        services.AddDbContext<ApplicationDbContext>(options =>
+        {
+            options.AddInterceptors(new AuditableEntityInterceptor());
+            options.UseSqlServer(connectionString);
+        });
         
         return services;
     }
