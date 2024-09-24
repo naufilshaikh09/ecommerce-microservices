@@ -27,6 +27,6 @@ public class GetOrdersHandler(IApplicationDbContext dbContext)
                 pageIndex,
                 pageSize,
                 totalCount,
-                orders.ToOrderDtoList()));        
+                orders.ToOrderDtoList()));
     }
 }

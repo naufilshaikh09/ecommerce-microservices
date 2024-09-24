@@ -12,7 +12,7 @@ public static class DatabaseExtensions
         context.Database.MigrateAsync().GetAwaiter().GetResult();
         await SeedAsync(context);
     }
-    
+
     private static async Task SeedAsync(ApplicationDbContext context)
     {
         await SeedCustomerAsync(context);
