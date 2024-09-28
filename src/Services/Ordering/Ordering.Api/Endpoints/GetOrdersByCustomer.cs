@@ -1,7 +1,3 @@
-using Carter;
-using Mapster;
-using MediatR;
-using Ordering.Application.Dtos;
 using Ordering.Application.Orders.Queries.GetOrdersByCustomer;
 
 namespace Ordering.Api.Endpoints;
@@ -20,7 +16,7 @@ public class GetOrdersByCustomer : ICarterModule
                 return Results.Ok(response);
             })
             .WithName("GetOrdersByCustomer")
-            .Produces<GetOrdersByCustomerResponse>(StatusCodes.Status200OK)
+            .Produces<GetOrdersByCustomerResponse>()
             .ProducesProblem(StatusCodes.Status400BadRequest)
             .ProducesProblem(StatusCodes.Status404NotFound)
             .WithSummary("Get Orders By Customer")

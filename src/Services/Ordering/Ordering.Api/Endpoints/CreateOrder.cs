@@ -1,12 +1,9 @@
-using Carter;
-using Mapster;
-using MediatR;
-using Ordering.Application.Dtos;
 using Ordering.Application.Orders.Commands;
 
 namespace Ordering.Api.Endpoints;
 
 public record CreateOrderRequest(OrderDto Order);
+
 public record CreateOrderResponse(Guid Id);
 
 public class CreateOrder : ICarterModule

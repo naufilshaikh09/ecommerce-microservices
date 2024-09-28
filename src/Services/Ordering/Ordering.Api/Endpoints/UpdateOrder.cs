@@ -1,12 +1,9 @@
-using Carter;
-using Mapster;
-using MediatR;
-using Ordering.Application.Dtos;
 using Ordering.Application.Orders.Commands.UpdateOrder;
 
 namespace Ordering.Api.Endpoints;
 
 public record UpdateOrderRequest(OrderDto Order);
+
 public record UpdateOrderResponse(bool IsSuccess);
 
 public class UpdateOrder : ICarterModule
@@ -21,7 +18,7 @@ public class UpdateOrder : ICarterModule
                 return Results.Ok(response);
             })
             .WithName("UpdateOrder")
-            .Produces<UpdateOrderResponse>(StatusCodes.Status200OK)
+            .Produces<UpdateOrderResponse>()
             .ProducesProblem(StatusCodes.Status400BadRequest)
             .WithSummary("Update Order")
             .WithDescription("Update Order");
