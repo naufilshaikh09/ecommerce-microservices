@@ -27,7 +27,7 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="OrderDb@localhost" uuid="8a2bc44e-1bfe-4640-9b82-3d96376e9923">
+    <data-source source="LOCAL" name="OrderDb@localhost" uuid="f48840dc-5107-4302-b571-f531af716c2f">
       <driver-ref>sqlserver.jb</driver-ref>
       <synchronize>true</synchronize>
       <configured-by-url>true</configured-by-url>
